@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    display_name: {
+    displayName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -26,13 +26,14 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     tableName: 'users',
     timestamps: false,
+    underscored: true,
   });
-  User.associate = (models) => {
-    User.hasMany(models.blogPost, {
-      foreignKey: 'user_id',
-      as: 'blogPosts',
-    });
-  };
+  // User.associate = (models) => {
+  //   User.hasMany(models.blogPost, {
+  //     foreignKey: 'user_id',
+  //     as: 'blogPosts',
+  //   });
+  // };
   return User;
 };
 
