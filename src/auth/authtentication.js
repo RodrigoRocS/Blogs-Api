@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const secret = process.env.JWT_SECRET || 'segredo';
-const jwtConfig = { algorithm: 'HS256', expiresIn: '60m' };
+const jwtConfig = { algorithm: 'HS256', expiresIn: '7d' };
 
 const createToken = (payload) => jwt.sign(payload, secret, jwtConfig);
 

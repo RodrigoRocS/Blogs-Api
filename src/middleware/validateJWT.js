@@ -8,6 +8,7 @@ const validateJwt = (req, res, next) => {
     }
 
     const token = authorization.split(' ')[1];
+    
     const payload = getPayload(token);
     req.payload = payload;
     next();
