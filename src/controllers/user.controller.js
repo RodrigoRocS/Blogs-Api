@@ -7,10 +7,7 @@ const createUser = async (req, res) => {
   
     await UserService.createUser({ displayName, email, password, image });
   
-    const user = await UserService.getByEmail(email);
-    console.log(user);
-    const { password: _password, ...userWithoutPassword } = user.dataValues;
-    const payload = { data: userWithoutPassword };
+    const payload = { data: { displayName, password, image } };
     const token = createToken(payload);
   
     return res.status(201).json({ token });
