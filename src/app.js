@@ -3,6 +3,7 @@ const login = require('./controllers/login.controller');
 const user = require('./controllers/user.controller');
 const validateNewUser = require('./middleware/validateNewUser');
 const validateEmail = require('./middleware/validadeEmail');
+const validateJwt = require('./middleware/validateJWT');
 // const validateJwt = require('./middleware/validateJWT');
 
 // ...
@@ -23,6 +24,7 @@ validateEmail,
 validateNewUser,
 user.createUser,
 );
+app.get('/user', validateJwt, user.getAll);
 
 // ...
 

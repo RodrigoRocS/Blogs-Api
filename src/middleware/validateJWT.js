@@ -4,19 +4,20 @@ const validateJwt = (req, res, next) => {
   try {
     const { authorization } = req.headers;
     if (!authorization) {
-      return res.status(401).json({
-        message: 'Token not found',
-      });
+      return res.status(401).json({ message: 'Token not found' });
     }
-  
-    const payload = getPayload(authorization);
+
+    const token = authorization.split(' ')[1];
+    const payload = getPayload(token);
     req.payload = payload;
     next();
   } catch (error) {
-    console.error(error);
+    if (error.name === 'TokenExpiredError' || error.name === 'JsonWebTokenError') {
+      return res.status(401).json({ message: 'Expired or invalid token' });
+    }
     res.status(500).json({
-      message: 'Erro ao acessar o endpoint',
-      error: 'É necessário um token válido para acessar esse endpoint',
+      message: 'Error accessing the endpoint',
+      error: 'A valid token is required to access this endpoint',
     });
   }
 };

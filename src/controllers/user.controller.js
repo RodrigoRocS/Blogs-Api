@@ -19,4 +19,14 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser };
+const getAll = async (_req, res) => {
+  const users = await UserService.getAllUsers();
+  const usersWithoutPassword = users.map((user) => {
+    const { password, ...dataValuesWithoutPassword } = user.dataValues;
+    return dataValuesWithoutPassword;
+  });
+  console.log(usersWithoutPassword);
+  res.status(200).json(usersWithoutPassword);
+};
+
+module.exports = { createUser, getAll };
