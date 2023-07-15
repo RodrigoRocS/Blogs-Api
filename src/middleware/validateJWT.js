@@ -5,7 +5,7 @@ const validateJwt = (req, res, next) => {
     const { authorization } = req.headers;
     if (!authorization) {
       return res.status(401).json({
-        message: 'A requisição necessita de um token válido',
+        message: 'Token not found',
       });
     }
   
