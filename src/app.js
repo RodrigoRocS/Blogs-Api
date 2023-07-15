@@ -4,6 +4,7 @@ const user = require('./controllers/user.controller');
 const validateNewUser = require('./middleware/validateNewUser');
 const validateEmail = require('./middleware/validadeEmail');
 const validateJwt = require('./middleware/validateJWT');
+const validateUserById = require('./middleware/validadeUserById');
 // const validateJwt = require('./middleware/validateJWT');
 
 // ...
@@ -25,6 +26,7 @@ validateNewUser,
 user.createUser,
 );
 app.get('/user', validateJwt, user.getAll);
+app.get('/user/:id', validateJwt, validateUserById, user.getById);
 
 // ...
 

@@ -25,8 +25,16 @@ const getAll = async (_req, res) => {
     const { password, ...dataValuesWithoutPassword } = user.dataValues;
     return dataValuesWithoutPassword;
   });
-  console.log(usersWithoutPassword);
   res.status(200).json(usersWithoutPassword);
 };
 
-module.exports = { createUser, getAll };
+const getById = async (req, res) => {
+  const { id } = req.params;
+  const user = await UserService.getById(id);
+  
+  const { password, ...userWithoutPassword } = user.dataValues;
+
+  res.status(200).json(userWithoutPassword);
+};
+
+module.exports = { createUser, getAll, getById };
