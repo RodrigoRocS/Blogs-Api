@@ -21,11 +21,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     published: {
       type: DataTypes.DATE,
-      allowNull: false,
+      defaultValue: new Date()
     },
     updated: {
       type: DataTypes.DATE,
-      allowNull: false,
+      defaultValue: new Date()
     },
   }, {
     tableName: 'blog_posts',
