@@ -1,5 +1,11 @@
 const { getPayload } = require('../auth/authtentication');
 
+const hasBearer = (token) => {
+ const validBearer = token.split(' ')[0];
+ if (validBearer === 'Bearer') { return token.split(' ')[1]; }
+ return token;
+};
+
 const validateJwt = (req, res, next) => {
   try {
     const { authorization } = req.headers;
@@ -7,7 +13,7 @@ const validateJwt = (req, res, next) => {
       return res.status(401).json({ message: 'Token not found' });
     }
 
-    const token = authorization.split(' ')[1];
+    const token = hasBearer(authorization);
     
     const payload = getPayload(token);
     req.payload = payload;
