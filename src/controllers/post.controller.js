@@ -1,9 +1,17 @@
 const { PostService } = require('../services');
 
 const createPost = async (req, res) => {
-  const { title, content, categoryIds } = req.body;
-    const { dataValues } = await PostService.createPost({ title, content, categoryIds });
-    return res.status(201).json(dataValues);
+  try {
+    const { title, content, categoryIds } = req.body;
+    const userId = req.payload.data.id;
+      const { dataValues } = await PostService.createPost({ title, content, userId });
+      const { id } = dataValues;
+      await PostService.createCategory(id, categoryIds);
+      console.log(dataValues);
+      return res.status(201).json(dataValues);
+  } catch (error) {
+    return res.status(500).json({ message: 'Erro interno', error: error.message });
+}
 };
 
 module.exports = { createPost };

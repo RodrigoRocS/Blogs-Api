@@ -1,6 +1,11 @@
-const { BlogPost } = require('../models');
+const { BlogPost, PostCategory } = require('../models');
 
 const createPost = ({
-   title, content, categoryIds }) => BlogPost.create({ title, content, categoryIds });
+   title, content, userId }) => BlogPost.create({ title, content, userId });
 
-module.exports = { createPost };
+const createCategory = async (id, categoryIds) => {
+   const posts = categoryIds.map((e) => ({ postId: id, categoryId: e }));
+   await PostCategory.bulkCreate(posts);
+};
+
+module.exports = { createPost, createCategory };

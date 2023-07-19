@@ -9,7 +9,6 @@ const validateJwt = require('./middleware/validateJWT');
 const validateUserById = require('./middleware/validadeUserById');
 const validateCategoryName = require('./middleware/validateCategoryName');
 const validatePost = require('./middleware/validatePostFields');
-// const validateJwt = require('./middleware/validateJWT');
 
 // ...
 
