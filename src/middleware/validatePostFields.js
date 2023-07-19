@@ -10,12 +10,13 @@ const validatePost = async (req, res, next) => {
   }
 
   const validateIds = await CategoryService.findAndCountAll(categoryIds);
-
-  if (categoryIds.length !== validateIds.count) {
+  
+  if (categoryIds.length !== validateIds) {
     return res.status(400).json({
       message: 'one or more "categoryIds" not found',
     });
   }
+  console.log('teste');
   
   next();
 };
