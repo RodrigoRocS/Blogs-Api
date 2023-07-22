@@ -6,7 +6,6 @@ const createPost = async (req, res) => {
     const userId = req.payload.data.id;
     console.log(req.payload);
       const { dataValues } = await PostService.createPost({ title, content, userId });
-      console.log(dataValues);
       const { id } = dataValues;
       await PostService.createCategory(id, categoryIds);
       return res.status(201).json(dataValues);
