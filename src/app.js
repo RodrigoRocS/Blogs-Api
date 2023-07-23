@@ -33,6 +33,7 @@ app.get('/user/:id', validateJwt, validateUserById, user.getById);
 app.get('/categories', validateJwt, category.getAll);
 app.post('/categories', validateCategoryName, validateJwt, category.createCategory);
 app.post('/post', validateJwt, validatePost, post.createPost);
+app.get('/post', validateJwt, post.getAll);
 
 // ...
 

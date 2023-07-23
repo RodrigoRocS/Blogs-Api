@@ -14,4 +14,13 @@ const createPost = async (req, res) => {
 }
 };
 
-module.exports = { createPost };
+const getAll = async (req, res) => {
+  try {
+      const data = await PostService.getAll();
+      return res.status(200).json(data);
+  } catch (error) {
+    return res.status(500).json({ message: 'Erro interno', error: error.message });
+}
+};
+
+module.exports = { createPost, getAll };
