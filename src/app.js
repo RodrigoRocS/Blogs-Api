@@ -36,6 +36,7 @@ app.get('/user/:id', validateJwt, validateUserById, user.getById);
 app.delete('/user/me', validateJwt, user.deleteUser);
 app.get('/categories', validateJwt, category.getAll);
 app.post('/categories', validateCategoryName, validateJwt, category.createCategory);
+app.get('/post/search', validateJwt, post.searchPost);
 app.post('/post', validateJwt, validatePost, post.createPost);
 app.get('/post', validateJwt, post.getAll);
 app.delete('/post/:id', validateJwt, validateDeletePost, post.deletePost);
