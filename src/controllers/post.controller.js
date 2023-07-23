@@ -33,4 +33,16 @@ const getById = async (req, res) => {
 }
 };
 
-module.exports = { createPost, getAll, getById };
+const updatePost = async (req, res) => {
+  try {
+      const { id } = req.params;
+      const { title, content } = req.body;
+      await PostService.updatePost(id, title, content);
+      const data = await PostService.getById(id);
+      return res.status(200).json(data);
+  } catch (error) {
+    return res.status(500).json({ message: 'Erro interno', error: error.message });
+}
+};
+
+module.exports = { createPost, getAll, getById, updatePost };

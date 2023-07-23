@@ -10,6 +10,7 @@ const validateUserById = require('./middleware/validadeUserById');
 const validateCategoryName = require('./middleware/validateCategoryName');
 const validatePost = require('./middleware/validatePostFields');
 const validatePostById = require('./middleware/validatePostById');
+const validateUpdatePost = require('./middleware/validateUpdatePost');
 
 // ...
 
@@ -36,6 +37,7 @@ app.post('/categories', validateCategoryName, validateJwt, category.createCatego
 app.post('/post', validateJwt, validatePost, post.createPost);
 app.get('/post', validateJwt, post.getAll);
 app.get('/post/:id', validateJwt, validatePostById, post.getById);
+app.put('/post/:id', validateJwt, validateUpdatePost, post.updatePost);
 
 // ...
 
