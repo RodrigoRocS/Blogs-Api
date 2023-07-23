@@ -9,9 +9,15 @@ const getByEmail = (email) => User.findOne({ where: { email } });
 
 const getById = (id) => User.findByPk(id);
 
+const deleteUser = async (id) => {
+  const removed = await User.destroy({ where: { id } });
+  return removed;
+};
+
 module.exports = {
   createUser,
   getAllUsers,
   getByEmail,
   getById,
+  deleteUser,
 };

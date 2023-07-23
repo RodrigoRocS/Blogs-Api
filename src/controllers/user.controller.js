@@ -30,4 +30,14 @@ const getById = async (req, res) => {
   res.status(200).json(userWithoutPassword);
 };
 
-module.exports = { createUser, getAll, getById };
+const deleteUser = async (req, res) => {
+  try {
+      const userId = req.payload.data.id;
+      await UserService.deleteUser(userId);
+      return res.status(204).send();
+  } catch (error) {
+    return res.status(500).json({ message: 'Erro interno', error: error.message });
+}
+};
+
+module.exports = { createUser, getAll, getById, deleteUser };
